@@ -2,9 +2,19 @@ var DATA_SIZE = 8;
 
 var inputElements = [];
 var outputMean = null;
+var error = document.querySelector("#error")
+
+Showerror=function(){
+    error.setAttribute("class","");
+};
+
+hideerror=function(){
+    error.setAttribute("class","hidden");
+};
 
 
-/**
+
+        /**
  * initInputElements: データ入力用のテキスト入力集めた配列を作成
  */
 var initInputElements = function(){
@@ -25,12 +35,13 @@ var calcMean = function(){
     var index = 0;
     var sum = 0;
     var n = 0;
-
+    hideerror();
     while(index < inputElements.length){
         var input = inputElements[index];
         var number = Number(input.value);
-        if(!Number.isNaN(number)){
-            sum = sum + number;
+        if(Number.isNaN(number)){
+            Showerror()
+        }else{sum = sum + number;
             n = n + 1;
         }
         index = index + 1;
