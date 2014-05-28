@@ -2,6 +2,7 @@ var DATA_SIZE = 8;
 
 var inputElements = [];
 var outputMean = null;
+var outputMax = null;
 var error = document.querySelector("#error")
 
 Showerror=function(){
@@ -52,14 +53,34 @@ var calcMean = function(){
     }
 };
 
+var calcMax = function(){
+    var index = 0;
+    var max = 0;
+    var m = 0;
+    while(index < inputElements.length){
+        var input = inputElements[index];
+        var number = Number(input.value);
+        if(max < number){
+            max = number
+        }
+        m = m + 1
+        index = index + 1
+        }
+    if(m > 0){
+        outputMax.textContent = max;
+};
+};
+
 var calcStats = function(){
     calcMean();
+    calcMax();
 };
 
 var initApp = function(){
     initInputElements();
 
     outputMean = document.querySelector("#mean");
+    outputMax = document.querySelector("#max");
 
     var calcMeanButton = document.querySelector("#start");
     calcMeanButton.addEventListener("click", calcStats);
